@@ -5,8 +5,8 @@ Quality-controlled cryptographic library for ES6 and ES5.
 ```javascript
 import Chupacabra from "chupacabra";
 
-const chupacabra = new Chupacabra;
-chupacabra.saySomething(); // will output "Something"
+Chupacabra.getUUID();//returns some uuid according to the RFC
+Chupacabra.hash("somestringvalue");//generates a hash using the sha1 algorithm
 ```
 
 # Quality and Compatibility
@@ -58,10 +58,13 @@ define(["require"] , function (require) {
 ```
 
 # Getting Started
+Chupacabra provides a set of static methods under the main class useful for crypto-related use cases.
 
-## More insights
+## getUUID()
+Returns a UUID according to the RFC.
 
-In order to say something, you should know that `chupacabra()` ... (add your test here)
+## hash()
+Receives the string to hash and returns a hash using the sha1 algorithm.
 
 # How to Contribute
 
@@ -91,5 +94,3 @@ If our saucelabs credentials are not installed, the tests are setup to automatic
 If you'd like to develop Chupacabra.js using SauceLabs, you need only create a new entry in our [issue tracker](https://github.com/FreeAllMedia/chupacabra/issues) asking for our SauceLabs credentials.
 
 We'll send over all credentials specific to this project so that you can perform comprehensive cross-platform tests.
-
-
