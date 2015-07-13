@@ -44,6 +44,13 @@ describe("crypto", () => {
 					const reDecodedValue = crypto.decodeHashId(encodedValues, salt);
 					reDecodedValue.should.eql(originalValues);
 				});
+
+				it("should encode and decode correctly many numbers with no salt specified", () => {
+					const originalValues = [129, 123];
+					const encodedValues = crypto.encodeHashId(...originalValues);
+					const reDecodedValue = crypto.decodeHashId(encodedValues);
+					reDecodedValue.should.eql(originalValues);
+				});
 			});
 		});
 	});
