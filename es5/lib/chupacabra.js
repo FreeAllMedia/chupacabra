@@ -10,6 +10,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var UUID = require("uuid-1345");
 var crypto = require("crypto");
+var HashIds = require("hashids");
 
 var Crypto = (function () {
 	function Crypto() {
@@ -27,6 +28,26 @@ var Crypto = (function () {
 			var shasum = crypto.createHash("sha1");
 			shasum.update(value);
 			return shasum.digest("hex");
+		}
+	}, {
+		key: "encodeHashId",
+		value: function encodeHashId() {
+			for (var _len = arguments.length, options = Array(_len), _key = 0; _key < _len; _key++) {
+				options[_key] = arguments[_key];
+			}
+
+			var content = options.splice(0, options.length - 1);
+			var salt = options[options.length - 1];
+			var hashIds = new HashIds(salt);
+			return hashIds.encode(content);
+		}
+	}, {
+		key: "decodeHashId",
+		value: function decodeHashId() {
+			var content = arguments[0];
+			var salt = arguments[1];
+			var hashIds = new HashIds(salt);
+			return hashIds.decode(content);
 		}
 	}]);
 

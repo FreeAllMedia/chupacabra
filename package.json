@@ -1,6 +1,6 @@
 {
   "name": "chupacabra",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Quality-controlled cryptographic library for ES6 and ES5.",
   "main": "index.js",
   "scripts": {
@@ -35,6 +35,7 @@
   "homepage": "https://github.com/FreeAllMedia/chupacabra",
   "dependencies": {
     "crypto": "0.0.3",
+    "hashids": "1.0.2",
     "uuid-1345": "^0.99.6"
   },
   "devDependencies": {
