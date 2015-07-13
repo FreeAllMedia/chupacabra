@@ -36,8 +36,19 @@ var Crypto = (function () {
 				options[_key] = arguments[_key];
 			}
 
-			var content = options.splice(0, options.length - 1);
-			var salt = options[options.length - 1];
+			var content = options[0];
+			var salt = undefined;
+			if (options.length > 1) {
+				content = options.splice(0, options.length - 1);
+				var lastOption = options[options.length - 1];
+				if (typeof lastOption === "string") {
+					salt = lastOption;
+				} else {
+					content.push(lastOption);
+				}
+			}
+
+			console.log("endogind", { salt: salt, content: content, options: options });
 			var hashIds = new HashIds(salt);
 			return hashIds.encode(content);
 		}
@@ -46,7 +57,7 @@ var Crypto = (function () {
 		value: function decodeHashId() {
 			var content = arguments[0];
 			var salt = arguments[1];
-			var hashIds = new HashIds(salt);
+			var hashIds = new HashIds(salt || undefined);
 			return hashIds.decode(content);
 		}
 	}]);

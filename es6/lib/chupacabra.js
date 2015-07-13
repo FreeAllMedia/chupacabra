@@ -14,8 +14,18 @@ export default class Crypto {
 	}
 
 	static encodeHashId(...options) {
-		const content = options.splice(0, (options.length-1));
-		const salt = options[options.length-1];
+		let content = options[0];
+		let salt;
+		if(options.length > 1) {
+			content = options.splice(0, (options.length - 1));
+			const lastOption = options[options.length - 1];
+			if(typeof lastOption === "string") {
+				salt = lastOption;
+			} else {
+				content.push(lastOption);
+			}
+		}
+
 		const hashIds = new HashIds(salt);
 		return hashIds.encode(content);
 	}
@@ -23,7 +33,7 @@ export default class Crypto {
 	static decodeHashId(...options) {
 		const content = options[0];
 		const salt = options[1];
-		const hashIds = new HashIds(salt);
+		const hashIds = new HashIds(salt || undefined);
 		return hashIds.decode(content);
 	}
 }

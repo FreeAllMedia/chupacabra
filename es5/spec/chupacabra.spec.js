@@ -50,6 +50,13 @@ describe("crypto", function () {
 					var reDecodedValue = _libChupacabraJs2["default"].decodeHashId(encodedValues, salt);
 					reDecodedValue.should.eql(originalValues);
 				});
+
+				it("should encode and decode correctly many numbers with no salt specified", function () {
+					var originalValues = [129, 123];
+					var encodedValues = _libChupacabraJs2["default"].encodeHashId.apply(_libChupacabraJs2["default"], originalValues);
+					var reDecodedValue = _libChupacabraJs2["default"].decodeHashId(encodedValues);
+					reDecodedValue.should.eql(originalValues);
+				});
 			});
 		});
 	});
